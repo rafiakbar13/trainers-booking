@@ -1,14 +1,9 @@
-import React, { useState } from 'react'
 import Modal from 'react-modal'
+import { VideoProps } from '../types/VideoPopup'
 Modal.setAppElement("#root");
 
-type Props = {
-    isOpen: boolean
-    videoUrl: string
-    onClose: () => void
-}
 
-const Video = ({ isOpen, videoUrl, onClose }: Props) => {
+const Video = ({ isOpen, videoUrl, onClose }: VideoProps) => {
 
     return (
         <Modal

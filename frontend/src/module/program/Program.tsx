@@ -1,11 +1,10 @@
-import React from 'react'
 import Card from '../../components/Card'
 import { FaRunning } from 'react-icons/fa'
-type Props = {}
 
-const Program = (props: Props) => {
+
+const Program = () => {
     return (
-        <section className=' py-10 pb-0 bg-gray-20 md:h-full'>
+        <section className=' py-10 pb-0 bg-gray-20'>
             {/* section heading */}
             <div className='w-5/6 mx-auto'>
                 <div className='flex items-center justify-between'>

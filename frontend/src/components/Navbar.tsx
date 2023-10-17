@@ -4,30 +4,7 @@ import { Button } from "@nextui-org/button";
 import Logo from '../assets/Logo.png';
 import { HiMiniBars3BottomRight } from 'react-icons/hi2';
 import { AiOutlineClose } from 'react-icons/ai';
-
-type MenuItemProps = {
-    name: string;
-    path: string;
-};
-
-const MENU: MenuItemProps[] = [
-    {
-        name: "Home",
-        path: "/"
-    },
-    {
-        name: "Find a Trainer",
-        path: "/trainers"
-    },
-    {
-        name: "Services",
-        path: "/services"
-    },
-    {
-        name: "Contact",
-        path: "/contact"
-    }
-];
+import { MENU } from '../constant/Menu';
 
 const Navbar = () => {
     const [toggle, setToggle] = useState<Boolean>(false);

@@ -8,9 +8,6 @@ import SponsorFortune from '../assets/SponsorFortune.png'
 import { AiFillPlayCircle } from 'react-icons/ai'
 import { motion } from "framer-motion";
 
-
-
-
 const Hero = () => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -75,7 +72,7 @@ const Hero = () => {
                                 videoUrl={videoUrl}
                                 onClose={closeModal}
                             />
-                            <p className="px-4">See How It Works</p>
+                            <p className="px-4">Watch Video</p>
                         </div>
                     </motion.div>
                 </div>
