@@ -2,19 +2,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import HomeLayout from './layout/HomeLayout'
 import Home from './pages/Home'
-import About from './pages/Services'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Trainers from './pages/Trainers/Trainers'
-import Services from './pages/Services'
-
+import ErrorPage from './pages/ErrorPage'
+import ProgramPage from './pages/Program'
+import AuthProvider from 'react-auth-kit/AuthProvider'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <HomeLayout />,
-    errorElement: <div>Not Found</div>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -25,8 +25,8 @@ const router = createBrowserRouter([
         element: <Trainers />
       },
       {
-        path: "services",
-        element: <Services />
+        path: "program",
+        element: <ProgramPage />
       },
       {
         path: "contact",
@@ -47,7 +47,12 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <AuthProvider
+        authType={'localstorage'}
+        authName={'auth'}
+      >
+        <RouterProvider router={router} />
+      </AuthProvider>
     </>
   )
 }

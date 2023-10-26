@@ -9,8 +9,8 @@ export const MENU: MenuItemProps[] = [
         path: "/trainers"
     },
     {
-        name: "Services",
-        path: "/services"
+        name: "Program",
+        path: "/program"
     },
     {
         name: "Contact",

@@ -2,7 +2,7 @@ import FitnessTrainer from "../assets/Fitness-Trainer.jpg";
 import KardioTrainer from "../assets/Kardio-Trainer.jpg";
 import YogaTrainer from "../assets/Yoga-Trainer.jpg";
 import MeditasiTrainer from "../assets/Meditasi-Trainer.jpg";
-import RehabilitasiTrainer from "../assets/Rehabilitasi-Trainer.jpg";
+import RehabilitasiTrainer from "../assets/Rehabilitas-Trainer.jpg";
 import BodyWeightTrainer from "../assets/BodyWeight-Trainer.jpg";
 export const trainers = [
     {
