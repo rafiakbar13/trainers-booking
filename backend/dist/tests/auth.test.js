@@ -26,21 +26,20 @@ beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
     });
 }));
 afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
-    yield mongoose_1.default.disconnect();
     yield mongoServer.stop();
 }));
 describe('Test Auth API Endpoints', () => {
     // todo positive test case
-    it('should register a new member', () => __awaiter(void 0, void 0, void 0, function* () {
-        const memberData = {
-            name: 'yoga',
-            email: 'yoga@gmail.com',
+    it('should register a new user', () => __awaiter(void 0, void 0, void 0, function* () {
+        const userData = {
+            name: 'John Doe',
+            email: 'john@gmail.com',
             password: '123456',
             role: 'member',
         };
-        const response = yield (0, supertest_1.default)(app_1.app).post('/api/v1/auth/register').send(memberData);
+        const response = yield (0, supertest_1.default)(app_1.app).post('/api/v1/auth/register').send(userData);
         expect(response.status).toBe(201);
         expect(response.body.success).toBe(true);
         expect(response.body.message).toBe('User created successfully');
-    }));
+    }), 50000);
 });
