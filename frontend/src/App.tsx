@@ -8,7 +8,9 @@ import Signup from './pages/Signup'
 import Trainers from './pages/Trainers/Trainers'
 import ErrorPage from './pages/ErrorPage'
 import ProgramPage from './pages/Program'
-import AuthProvider from 'react-auth-kit/AuthProvider'
+import UserAccount from './pages/dashboard/user-account/UserAccount'
+import Dashboard from './pages/dashboard/trainer-account/Dashboard'
+import ProtectedRoutes from './utils/ProtectedRoutes'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />
+      },
+      {
+        path: "member/profile/me",
+        element: <ProtectedRoutes allowedRoles={['member']}><UserAccount /></ProtectedRoutes>
+      },
+      {
+        path: "trainer/profile/me",
+        element: <ProtectedRoutes allowedRoles={['trainer']}><Dashboard /></ProtectedRoutes>
       }
     ]
   },
@@ -41,18 +51,14 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Signup />
-  }
+  },
+
 ])
 
 function App() {
   return (
     <>
-      <AuthProvider
-        authType={'localstorage'}
-        authName={'auth'}
-      >
-        <RouterProvider router={router} />
-      </AuthProvider>
+      <RouterProvider router={router} />
     </>
   )
 }

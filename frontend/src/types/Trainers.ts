@@ -1,5 +1,5 @@
 export type TrainersProps = {
-    id: string,
+    _id: string,
     name: string,
     specialization: string,
     avgRating: number,

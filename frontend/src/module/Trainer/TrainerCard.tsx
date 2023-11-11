@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import starIcon from "../../assets/Star.png";
 import { TrainersProps } from '../../types/Trainers';
 
-const TrainerCard = ({ name, specialization, avgRating, totalRating, photo, totalMember }: TrainersProps) => {
+const TrainerCard = ({ _id, name, specialization, avgRating, totalRating, photo, totalMember }: TrainersProps) => {
     return (
         <Card className='w-80 rounded-xl bg-white-400 shadow-lg'>
             <img src={photo} alt="" className='rounded-t-lg w-full h-96' />

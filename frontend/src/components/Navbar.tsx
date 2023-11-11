@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@nextui-org/button";
 import Logo from '../assets/Logo.png';
@@ -6,12 +6,13 @@ import { HiMiniBars3BottomRight } from 'react-icons/hi2';
 import { AiOutlineClose } from 'react-icons/ai';
 import { MENU } from '../constant/Menu';
 import { motion } from 'framer-motion';
+import { authContext } from '../context/AuthContext';
 
 const Navbar = () => {
     const [toggle, setToggle] = useState<Boolean>(false);
     const [scrolled, setScrolled] = useState<Boolean>(false);
     const location = useLocation();
-
+    const { user, role, token } = useContext(authContext);
     const closeMenu = () => {
         setToggle(false);
     };
@@ -61,26 +62,39 @@ const Navbar = () => {
                             {item.name}
                         </Link>
                     ))}
-                    <div className='flex items-center gap-4 ml-4'>
-                        <Link to='/login' className='' onClick={closeMenu}>
-                            <Button className='transition-colors bg-transparent hover:text-primary-500 duration-250'>
-                                Sign In
-                            </Button>
-                        </Link>
-                        <Link to='/register' className='' onClick={closeMenu}>
-                            <Button className='transition-colors rounded-md hover:text-white duration-250 bg-secondary-500 hover:bg-primary-500 '>
-                                Become a Member
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
+                    {token && user ? (
+                        <div>
+                            <Link to={`${role === 'trainer' ? "/trainers/profile/me" : "/member/profile/me"}`}>
+                                <figure className='w-8 h-8 cursor-pointer rounded-full'>
+                                    <img src={user?.photo} alt="" className='w-full rounded-full' />
+                                </figure>
+                                <h2>{user?.name}</h2>
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className='flex items-center gap-4 ml-4'>
+                            <Link to='/login' className='' onClick={closeMenu}>
+                                <Button className='transition-colors bg-transparent hover:text-primary-500 duration-250'>
+                                    Sign In
+                                </Button>
+                            </Link>
+                            <Link to='/register' className='' onClick={closeMenu}>
+                                <Button className='transition-colors rounded-md hover:text-white duration-250 bg-secondary-500 hover:bg-primary-500 '>
+                                    Become a Member
+                                </Button>
+                            </Link>
+                        </div>
+                    )
+                    }
+
+                </div >
                 <Button className='md:hidden' onClick={() => setToggle(!toggle)}>
                     {toggle ?
                         <AiOutlineClose size={20} className='' /> :
                         <HiMiniBars3BottomRight size={20} />
                     }
                 </Button>
-            </nav>
+            </nav >
             {toggle && <div className={`flex flex-col items-center justify-center gap-8 py-4 bg-primary-300 md:hidden rounded-b-3xl shadow-xl`}>
                 {MENU.map((item, index) => (
                     <Link to={item.path} key={index} className={`${location.pathname === item.path ? "border-b-2 border-gray-500" : ""}`} onClick={closeMenu}>
@@ -96,7 +110,7 @@ const Navbar = () => {
                     </Button>
                 </div>
             </div>}
-        </motion.header>
+        </motion.header >
     );
 }
 

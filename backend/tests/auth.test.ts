@@ -4,22 +4,24 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
 let mongoServer: MongoMemoryServer;
-beforeAll(async () => {
-    const mongo = await MongoMemoryServer.create();
-    const uri = mongo.getUri();
-    await mongoose.createConnection(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    } as ConnectOptions
-    );
-});
+
+describe('Test Auth API Endpoints', async () => {
+
+    beforeAll(async () => {
+        const mongo = await MongoMemoryServer.create();
+        const uri = mongo.getUri();
+        await mongoose.createConnection(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        } as ConnectOptions
+        );
+    });
 
 
-afterAll(async () => {
-    await mongoServer.stop();
-});
+    afterAll(async () => {
+        await mongoServer.stop();
+    });
 
-describe('Test Auth API Endpoints', () => {
     // todo positive test case
     it('should register a new user', async () => {
         const userData = {
@@ -27,6 +29,7 @@ describe('Test Auth API Endpoints', () => {
             email: 'john@gmail.com',
             password: '123456',
             role: 'member',
+            gender: "male"
         }
         const response = await request(app).post('/api/v1/auth/register').send(userData);
         expect(response.status).toBe(201);
