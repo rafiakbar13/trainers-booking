@@ -13,6 +13,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@tanstack/react-query": "^4.36.1",
     "axios": "^1.5.1",
+    "intl": "^1.2.5",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-auth-kit": "^3.0.0-alpha.22",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@nextui-org/react": "^2.1.13",
+    "@types/intl": "^1.2.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-modal": "^3.16.1",
