@@ -13,4 +13,5 @@ router.get("/", trainerController_1.getAllTrainers);
 router.get("/:id", trainerController_1.getSingleTrainer);
 router.put("/:id", verifyToken_1.authenticate, (0, verifyToken_1.restrict)(["trainer"]), trainerController_1.updateTrainer);
 router.delete("/:id", verifyToken_1.authenticate, (0, verifyToken_1.restrict)(["trainer"]), trainerController_1.deleteTrainer);
+router.get("/profile/me", verifyToken_1.authenticate, (0, verifyToken_1.restrict)(["trainer"]), trainerController_1.getMyTrainer);
 exports.default = router;
