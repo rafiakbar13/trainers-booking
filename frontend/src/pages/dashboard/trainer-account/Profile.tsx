@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { customFetch } from "../../../utils";
+import { toast } from "react-toastify";
+import { HashLoader } from "react-spinners";
+import {
+  UpdateProfileSchema,
+  UpdateProfileSchemaType,
+} from "../../../lib/types";
+import { zodResolver } from "@hookform/resolvers/zod";
 type Props = {};
 
-const Profile = (props: Props) => {
+const Profile = ({ data }: any) => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewURL, setPreviewURL] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = React.useState<any>([]);
   const [formData, setFormData] = React.useState({});
+  const navigate = useNavigate();
+
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors, isSubmitting },
+  // } = useForm<UpdateProfileSchemaType>({
+  //   resolver: zodResolver(UpdateProfileSchema),
+  // });
+
   // reusable funtion for adding item
 
   const addItem = (key: any, item: any) => {
@@ -35,8 +57,6 @@ const Profile = (props: Props) => {
   //   Reusable delete funtion
 
   const handleReusableDeleteFunc = (index: number, key: any) => {
-    import React from "react";
-
     // ... other code ...
 
     const handleReusableDeleteFunc = (index: number, key: any) => {
@@ -62,8 +82,37 @@ const Profile = (props: Props) => {
     addItem("timeSlots", {});
   };
 
+  const onSubmit = async (data: UpdateProfileSchemaType) => {
+    console.log(data);
+
+    try {
+      if (!selectedFile) {
+        return toast.error("Please select an image");
+      }
+
+      const response = await customFetch.put(
+        `/api/v1/trainer/${user._id}`,
+        {
+          ...data,
+          photo: selectedFile,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      toast.success("Update Profile successfully");
+      navigate("/");
+      return response;
+    } catch (error: any) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  };
+
   return (
-    <div>
+    <div className="">
       <h2 className="text-gray-800 font-bold text-[24px] leading-9 mb-10">
         Profile Information
       </h2>
@@ -73,9 +122,9 @@ const Profile = (props: Props) => {
           <input
             type="text "
             name="name"
-            defaultValue={user.name}
+            defaultValue={data.name}
             placeholder="full name"
-            className=""
+            className="w-full px-4 py-2 border border-solid border-gray-500 rounded-md text-[16px] text-gray-900  font-[400] focus:outline-none focus:border-primary-500 leading-7 placeholder:text-gray-50 cursor-pointer mt-2"
           />
         </div>
         <div className="mb-5">
@@ -83,9 +132,9 @@ const Profile = (props: Props) => {
           <input
             type="text "
             name="email"
-            defaultValue={user.name}
+            defaultValue={data.email}
             placeholder="Email"
-            className=""
+            className="w-full px-4 py-2 border border-solid border-gray-500 rounded-md text-[16px] text-gray-900  font-[400] focus:outline-none focus:border-primary-500 leading-7 placeholder:text-gray-50 cursor-pointer mt-2"
             readOnly
             aria-readonly
             disabled={true}
@@ -96,9 +145,9 @@ const Profile = (props: Props) => {
           <input
             type="number"
             name="phone"
-            defaultValue={user.phone}
+            defaultValue={data.phone}
             placeholder="Phone number"
-            className=""
+            className="w-full px-4 py-2 border border-solid border-gray-500 rounded-md text-[16px] text-gray-900  font-[400] focus:outline-none focus:border-primary-500 leading-7 placeholder:text-gray-50 cursor-pointer mt-2"
             readOnly
             aria-readonly
             disabled={true}
@@ -109,9 +158,9 @@ const Profile = (props: Props) => {
           <input
             type="text"
             name="bio"
-            defaultValue={user.bio}
+            defaultValue={data.bio}
             placeholder="Bio"
-            className=""
+            className="w-full px-4 py-2 border border-solid border-gray-500 rounded-md text-[16px] text-gray-900  font-[400] focus:outline-none focus:border-primary-500 leading-7 placeholder:text-gray-50 cursor-pointer mt-2"
             readOnly
             aria-readonly
             disabled={true}
@@ -121,11 +170,11 @@ const Profile = (props: Props) => {
         <div className="mb-5">
           <div className="grid grid-cols-3 gap-5 mb-[30px]">
             <div>
-              <p className="text-base text-gray-600">Gender</p>
+              <p className="text-base text-gray-800">Gender</p>
               <select
                 name="gender"
-                defaultValue={user.gender}
-                className="py-3.5"
+                defaultValue={data.gender}
+                className="font-semibold text-[15px] leading-7 py-3.5 focus:outline-none"
               >
                 <option value="">Select</option>
                 <option value="male">Male</option>
@@ -134,11 +183,11 @@ const Profile = (props: Props) => {
             </div>
 
             <div>
-              <p className="text-base text-gray-600">Specialization</p>
+              <p className="text-base text-gray-800">Specialization</p>
               <select
                 name="specialization"
-                defaultValue={user.specialization}
-                className="py-3.5"
+                defaultValue={data.specialization}
+                className="font-semibold text-[15px] leading-7 py-3.5 focus:outline-none"
               >
                 <option value="">Select</option>
                 <option value="male">Male</option>
@@ -150,18 +199,18 @@ const Profile = (props: Props) => {
               <p className="text-base text-gray-600">Ticket Price</p>
               <input
                 type="number"
-                name=""
-                id=""
+                name="ticketPrice"
+                id="ticketPrice"
                 placeholder="100"
-                defaultValue={user.ticketPrice}
-                className=""
+                defaultValue={data.ticketPrice}
+                className="w-full px-4 py-2 border border-solid border-gray-500 rounded-md text-[16px] text-gray-900  font-[400] focus:outline-none focus:border-primary-500 leading-7 placeholder:text-gray-50 cursor-pointer mt-2 placeholder-gray-500"
               />
             </div>
           </div>
         </div>
         <div className="mb-5">
           <p className="text-base text-gray-600">Experiences</p>
-          {user.experiences.map((experience: any, index: number) => (
+          {/* {data.experience.map((experience: any, index: number) => (
             <div key={index}>
               <div className="grid grid-cols-2">
                 <div>
@@ -205,11 +254,11 @@ const Profile = (props: Props) => {
               </div>
               <button className="text-red-500">Add Experiences</button>
             </div>
-          ))}
+          ))} */}
         </div>
         <div className="mb-5">
           <p className="text-base text-gray-600">Time Slots</p>
-          {user.timeSlots.map((item: any, index: number) => (
+          {/* {data.timeSlots.map((item: any, index: number) => (
             <div key={index}>
               <div>
                 <div className="grid grid-cols-2 gap-5 md:grid-cols-4 mb-[30px]">
@@ -269,7 +318,7 @@ const Profile = (props: Props) => {
               </div>
               <button className="text-red-500">Add Timeslot</button>
             </div>
-          ))}
+          ))} */}
         </div>
 
         <div className="mb-5">
@@ -279,9 +328,9 @@ const Profile = (props: Props) => {
             id=""
             rows={10}
             placeholder="write about you"
-            className=""
+            className="w-full px-4 py-2 border border-solid border-gray-500 rounded-md text-[16px] text-gray-900 font-[400] focus:outline-none focus:border-primary-500 leading-7 placeholder:text-gray-50 cursor-pointer mt-2"
           >
-            {user.about}
+            {data.about}
           </textarea>
         </div>
 
@@ -292,7 +341,7 @@ const Profile = (props: Props) => {
             </figure>
           )}
 
-          <div className="relative w-[130px] h-[50px]">
+          {/* <div className="relative w-[130px] h-[50px]">
             <input
               {...register("photo", {
                 required: true,
@@ -309,7 +358,7 @@ const Profile = (props: Props) => {
             >
               Upload Photo
             </label>
-          </div>
+          </div> */}
         </div>
         <div className="mt-7">
           <button

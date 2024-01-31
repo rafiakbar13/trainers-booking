@@ -7,15 +7,10 @@ const TrainerAbout = ({ name, experiences, about }: any) => {
         <h3 className="text-[20px] leading-[30px] text-headingColor font-semibold flex items-center gap-2">
           About Of
           <span className="text-irisBlueColor font-bold text-[24px]">
-            Rafi Akbar
+            {name}
           </span>
         </h3>
-        <p className="text__para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo aperiam
-          architecto illo nulla veritatis, voluptatem harum impedit laborum
-          repellat ullam quaerat odit amet provident ad accusantium quis quo.
-          Unde, esse.
-        </p>
+        <p className="text__para">{about}</p>
       </div>
 
       <div className="mt-12">

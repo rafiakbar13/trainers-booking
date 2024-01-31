@@ -37,8 +37,10 @@ const Dashboard = (props: Props) => {
     getProfile();
   }, []);
 
+  console.log(user);
+
   return (
-    <section className="max-w-[1170px] px-5 mx-auto">
+    <section className="max-w-[1170px] px-5 mx-auto my-20">
       {loading && !error && <Loading />}
       {error && !loading && <ErrorPage />}
 
@@ -58,31 +60,34 @@ const Dashboard = (props: Props) => {
             )}
             <div className="mt-8">
               {tab === "overview" && (
-                <div>
-                  <div className="flex items-center gap-4 mb-10">
+                <div className="">
+                  <div className="flex items-center gap-5 mb-10">
                     <figure className="max-w-[200px] max-h-[200px]">
                       <img src={user?.photo} alt="avatar" className="w-full" />
                     </figure>
-                    <div className="bg-[#CCF0F3] text-primary-300 py-1 px-4 lg:py-2 lg:px-6 rounded-full text-[12px] leading-4 lg:leading-6 font-semibold">
-                      <span>{user.specialization}</span>
-                    </div>
-                    <h3 className="text-[22px] leading-9 font-bold text-gray-900">
-                      Rafi
-                    </h3>
-                    <div className="flex items-center gap-[6px]">
-                      <span className="flex items-center gap-[6px] text-gray-950 text-[14px] leading-5 lg:text-[16px] lg:leading-6 font-semibold">
-                        <img src={StarIcon} alt="" />
-                        4.5
-                      </span>
+                    <div className="flex flex-col gap-4">
+                      <div className="bg-primary-100 text-gray-500 py-2 px-4 lg:py-2 lg:px-6 rounded-md text-[18px] leading-4 font-semibold max-w-[140px] text-center">
+                        <span>Diet</span>
+                      </div>
+                      <h3 className="text-[22px] leading-9 font-bold text-gray-900">
+                        Rafi
+                      </h3>
+                      <div className="flex items-center gap-[6px]">
+                        <span className="flex items-center gap-[6px] text-gray-950 text-[14px] leading-5 lg:text-[16px] lg:leading-6 font-semibold">
+                          <img src={StarIcon} alt="" />
+                          4.5
+                        </span>
 
-                      <span className="text-gray-400 text-[14px] leading-5 lg:text-[16px] lg:leading-6 font-semibold">
-                        (233)
-                      </span>
-                    </div>
+                        <span className="text-gray-400 text-[14px] leading-5 lg:text-[16px] lg:leading-6 font-semibold">
+                          (233)
+                        </span>
+                      </div>
 
-                    <p className="text-sm font-[15px] lg:max-w-[390px] leading-6">
-                      Doctor bio
-                    </p>
+                      <p className="text-sm font-[15px] lg:max-w-[390px] leading-6">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing
+                        elit. Tempore, mollitia?
+                      </p>
+                    </div>
                   </div>
                   <TrainerAbout
                     name={user.name}
@@ -92,7 +97,7 @@ const Dashboard = (props: Props) => {
                 </div>
               )}
               {tab === "overview" && <div>appointment</div>}
-              {tab === "overview" && <Profile />}
+              {tab === "settings" && <Profile data={user} />}
             </div>
           </div>
         </div>

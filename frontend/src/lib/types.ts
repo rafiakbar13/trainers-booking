@@ -18,6 +18,11 @@ export const UpdateProfileSchema = z.object({
   password: z.string().min(6).optional(),
   photo: z.instanceof(FileList),
   gender: z.string(),
+  specialization: z.string().optional(),
+  experience: z.string().optional(),
+  ticketPrice: z.string().optional(),
+  timeSlots: z.string().optional(),
+  about: z.string().optional(),
 });
 
 export type UpdateProfileSchemaType = z.infer<typeof UpdateProfileSchema>;

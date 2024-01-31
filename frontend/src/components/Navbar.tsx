@@ -75,7 +75,7 @@ const Navbar = () => {
             <Link
               to={`${
                 role === "trainer"
-                  ? "/trainers/profile/me"
+                  ? "/trainer/profile/me"
                   : "/member/profile/me"
               }`}
             >

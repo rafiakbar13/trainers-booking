@@ -18,14 +18,14 @@ const Tabs = ({ tab, setTab }: any) => {
       <span className="lg:hidden">
         <BiMenu className="w-6 h-6 cursor-pointer" />
       </span>
-      <div className="hidden lg:flex flex-col p-[30px] bg-white shadow-md items-center h-max rounded-md">
+      <div className="hidden lg:flex flex-col p-[30px] bg-white shadow-md items-center h-max rounded-md space-y-5">
         <button
           onClick={() => setTab("overview")}
           className={`${
             tab === "overview"
-              ? "bg-white text-primary-100"
+              ? " text-gray-500"
               : "bg-transparent text-gray-800"
-          } w-full mt-0 bg-primary-300 rounded-md`}
+          } w-full mt-0 bg-primary-100 rounded-md py-3`}
         >
           Overview
         </button>
@@ -33,9 +33,9 @@ const Tabs = ({ tab, setTab }: any) => {
           onClick={() => setTab("appointment")}
           className={`${
             tab === "appointment"
-              ? "bg-white text-primary-100"
+              ? "text-gray-500"
               : "bg-transparent text-gray-800"
-          } w-full mt-0 bg-primary-300 rounded-md`}
+          } w-full mt-0 bg-primary-100 rounded-md py-3`}
         >
           Appointment
         </button>
@@ -43,9 +43,9 @@ const Tabs = ({ tab, setTab }: any) => {
           onClick={() => setTab("settings")}
           className={`${
             tab === "settings"
-              ? "bg-white text-primary-100"
+              ? "text-gray-500"
               : "bg-transparent text-gray-800"
-          } w-full mt-0 bg-primary-300 rounded-md`}
+          } w-full mt-0 bg-primary-100 rounded-md py-3`}
         >
           Settings
         </button>
