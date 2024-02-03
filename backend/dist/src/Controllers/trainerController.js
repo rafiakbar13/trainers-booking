@@ -33,13 +33,13 @@ const updateTrainer = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(200).json({
             success: true,
             message: "Trainer updated successfully",
-            data: updateTrainer
+            data: updateTrainer,
         });
     }
     catch (error) {
         res.status(500).json({
             success: false,
-            message: "Failed to update trainer"
+            message: "Failed to update trainer",
         });
     }
 });
@@ -56,7 +56,7 @@ const deleteTrainer = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     catch (error) {
         res.status(500).json({
             success: false,
-            message: "Failed to delete trainer"
+            message: "Failed to delete trainer",
         });
     }
 });
@@ -65,18 +65,18 @@ const getSingleTrainer = (req, res) => __awaiter(void 0, void 0, void 0, functio
     const id = req.params.id;
     try {
         const trainer = yield TrainerSchema_1.default.findById(id)
-            .populate('reviews')
-            .select('-password');
+            .populate("reviews")
+            .select("-password");
         res.status(200).json({
             success: true,
             message: "Trainer found successfully",
-            data: trainer
+            data: trainer,
         });
     }
     catch (error) {
         res.status(404).json({
             success: false,
-            message: "Trainer not found"
+            message: "Trainer not found",
         });
     }
 });
@@ -91,18 +91,18 @@ const getAllTrainers = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 $or: [
                     { name: { $regex: query, $options: "i" } },
                     { specialization: { $regex: query, $options: "i" } },
-                ]
-            }).select('-password');
+                ],
+            }).select("-password");
         }
         else {
             trainers = yield TrainerSchema_1.default.find({
                 isApproved: "approved",
-            }).select('-password');
+            }).select("-password ");
         }
         res.status(200).json({
             success: true,
             message: "Trainers found successfully",
-            data: trainers
+            data: trainers,
         });
     }
     catch (error) {
@@ -120,7 +120,7 @@ const getMyTrainer = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         if (!trainer) {
             return res.status(404).json({
                 success: false,
-                message: "Trainer not found"
+                message: "Trainer not found",
             });
         }
         const _a = trainer.toObject(), { password } = _a, rest = __rest(_a, ["password"]);
@@ -128,13 +128,13 @@ const getMyTrainer = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.status(200).json({
             success: true,
             message: "Trainer fetched successfully",
-            data: Object.assign(Object.assign({}, rest), { appointments })
+            data: Object.assign(Object.assign({}, rest), { appointments }),
         });
     }
     catch (error) {
         res.status(500).json({
             success: false,
-            message: "Failed to fetch trainer"
+            message: "Failed to fetch trainer",
         });
     }
 });

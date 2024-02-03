@@ -34,7 +34,6 @@ const TrainerSchema = new mongoose_1.Schema({
     role: {
         type: String,
     },
-    // fields for trainer
     specialization: { type: String },
     experience: { type: [String] },
     bio: { type: String, maxLength: 50 },

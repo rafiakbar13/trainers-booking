@@ -33,13 +33,13 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(200).json({
             success: true,
             message: "User updated successfully",
-            data: updateUser
+            data: updateUser,
         });
     }
     catch (error) {
         res.status(500).json({
             success: false,
-            message: "Failed to updated"
+            message: "Failed to updated",
         });
     }
 });
@@ -50,7 +50,7 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         yield UserSchema_1.default.findByIdAndDelete(id);
         res.status(200).json({
             success: true,
-            message: "User deleted successfully"
+            message: "User deleted successfully",
         });
     }
     catch (error) {
@@ -74,7 +74,7 @@ const getSingleUser = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     catch (error) {
         res.status(404).json({
             success: false,
-            message: "User not found"
+            message: "User not found",
         });
     }
 });
@@ -85,7 +85,7 @@ const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(200).json({
             success: true,
             message: "Users fetched successfully",
-            data: users
+            data: users,
         });
     }
     catch (error) {
@@ -103,20 +103,20 @@ const getUserProfile = (req, res) => __awaiter(void 0, void 0, void 0, function*
         if (!user) {
             return res.status(404).json({
                 success: false,
-                message: "User not found"
+                message: "User not found",
             });
         }
         const _a = user.toObject(), { password } = _a, rest = __rest(_a, ["password"]);
         res.status(200).json({
             success: true,
             message: "User profile fetched successfully",
-            data: Object.assign({}, rest)
+            data: Object.assign({}, rest),
         });
     }
     catch (error) {
         res.status(500).json({
             success: false,
-            message: "Failed to fetch user profile"
+            message: "Failed to fetch user profile",
         });
     }
 });
@@ -133,7 +133,7 @@ const getMyAppointment = (req, res) => __awaiter(void 0, void 0, void 0, functio
     catch (error) {
         res.status(500).json({
             success: false,
-            message: "Failed to fetch appointments"
+            message: "Failed to fetch appointments",
         });
     }
 });
