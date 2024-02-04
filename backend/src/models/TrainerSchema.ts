@@ -1,5 +1,18 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 
+interface IExperience {
+  startingDate: string;
+  endDate: string;
+  position: string;
+  hospital: string;
+}
+
+interface ITimeSlot {
+  day: string;
+  startingTime: string;
+  endingTime: string;
+}
+
 export interface ITrainer extends Document {
   email: string;
   password: string;
@@ -9,10 +22,10 @@ export interface ITrainer extends Document {
   ticketPrice: number;
   role: string;
   specialization: string;
-  experience: string[];
+  experience: IExperience[];
   bio: string;
   about: string;
-  timeSlots: string[];
+  timeSlots: ITimeSlot[];
   reviews: mongoose.Types.ObjectId[];
   averageRating: number;
   totalRating: number;
@@ -31,10 +44,10 @@ const TrainerSchema: Schema = new Schema<ITrainer>({
     type: String,
   },
   specialization: { type: String },
-  experience: { type: [String] },
+  experience: [{ type: Object }],
   bio: { type: String, maxLength: 50 },
   about: { type: String },
-  timeSlots: { type: [String] },
+  timeSlots: [{ type: Object }],
   reviews: [{ type: mongoose.Types.ObjectId, ref: "Review" }],
   averageRating: {
     type: Number,

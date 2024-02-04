@@ -35,10 +35,10 @@ const TrainerSchema = new mongoose_1.Schema({
         type: String,
     },
     specialization: { type: String },
-    experience: { type: [String] },
+    experience: [{ type: Object }],
     bio: { type: String, maxLength: 50 },
     about: { type: String },
-    timeSlots: { type: [String] },
+    timeSlots: [{ type: Object }],
     reviews: [{ type: mongoose_1.default.Types.ObjectId, ref: "Review" }],
     averageRating: {
         type: Number,

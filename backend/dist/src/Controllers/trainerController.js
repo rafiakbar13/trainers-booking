@@ -96,7 +96,7 @@ const getAllTrainers = (req, res) => __awaiter(void 0, void 0, void 0, function*
         }
         else {
             trainers = yield TrainerSchema_1.default.find({
-                isApproved: "approved",
+                isApproved: "pending",
             }).select("-password ");
         }
         res.status(200).json({
