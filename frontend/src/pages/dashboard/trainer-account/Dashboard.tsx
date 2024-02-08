@@ -7,6 +7,7 @@ import { PiWarningOctagon } from "react-icons/pi";
 import StarIcon from "../../../assets/Star.png";
 import TrainerAbout from "../../Trainers/TrainerAbout";
 import Profile from "./Profile";
+import Appointments from "./Appointments";
 type Props = {};
 
 const Dashboard = (props: Props) => {
@@ -37,8 +38,6 @@ const Dashboard = (props: Props) => {
     getProfile();
   }, []);
 
-  console.log(user);
-
   return (
     <section className="max-w-[1170px] px-5 mx-auto my-20">
       {loading && !error && <Loading />}
@@ -66,26 +65,25 @@ const Dashboard = (props: Props) => {
                       <img src={user?.photo} alt="avatar" className="w-full" />
                     </figure>
                     <div className="flex flex-col gap-4">
-                      <div className="bg-primary-100 text-gray-500 py-2 px-4 lg:py-2 lg:px-6 rounded-md text-[18px] leading-4 font-semibold max-w-[140px] text-center">
-                        <span>Diet</span>
+                      <div className="bg-primary-100 text-gray-500 py-2 px-4 lg:py-2 lg:px-6 rounded-md text-[18px] leading-4 font-semibold max-w-[160px] text-center whitespace-nowrap">
+                        <span>{user?.specialization}</span>
                       </div>
                       <h3 className="text-[22px] leading-9 font-bold text-gray-900">
-                        Rafi
+                        {user?.name}
                       </h3>
                       <div className="flex items-center gap-[6px]">
                         <span className="flex items-center gap-[6px] text-gray-950 text-[14px] leading-5 lg:text-[16px] lg:leading-6 font-semibold">
                           <img src={StarIcon} alt="" />
-                          4.5
+                          {user?.averageRating}
                         </span>
 
                         <span className="text-gray-400 text-[14px] leading-5 lg:text-[16px] lg:leading-6 font-semibold">
-                          (233)
+                          ({user?.totalRating} Reviews)
                         </span>
                       </div>
 
                       <p className="text-sm font-[15px] lg:max-w-[390px] leading-6">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Tempore, mollitia?
+                        {user?.bio}
                       </p>
                     </div>
                   </div>
@@ -96,8 +94,10 @@ const Dashboard = (props: Props) => {
                   />
                 </div>
               )}
-              {tab === "overview" && <div>appointment</div>}
-              {tab === "settings" && <Profile data={user} />}
+              {tab === "appointment" && (
+                <Appointments appointments={user.appointments} />
+              )}
+              {tab === "settings" && <Profile trainer={user} />}
             </div>
           </div>
         </div>

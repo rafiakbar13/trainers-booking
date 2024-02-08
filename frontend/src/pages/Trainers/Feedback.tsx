@@ -1,9 +1,9 @@
 import React from "react";
-import avatar from "../../assets/images/avatar-icon.png";
+// import avatar from "../../assets/images/avatar-icon.png";
 import { formatDate } from "../../utils/formatDate";
 import { AiFillStar } from "react-icons/ai";
 import FeedbackForm from "./FeedbackForm";
-const FeedBack = () => {
+const FeedBack = ({ reviews, totalRating }: any) => {
   const [showFeedbackForm, setShowFeedbackForm] = React.useState(false);
   return (
     <div>
@@ -14,7 +14,7 @@ const FeedBack = () => {
         <div className="flex justify-between gap-10 mb-[30px]">
           <div className="flex gap-3">
             <figure className="w-10 h-10 rounded-full">
-              <img src={avatar} alt="" className="w-full" />
+              <img src={""} alt="" className="w-full" />
             </figure>
             <div>
               <h5 className="text-[16px] leading-6 text-primaryColor font-bold">

@@ -1,14 +1,44 @@
 import React from "react";
+import { set } from "react-hook-form";
 import { AiFillStar } from "react-icons/ai";
-
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { customFetch } from "../../utils";
+import { HashLoader } from "react-spinners";
 const FeedbackForm = () => {
   const [rating, setRating] = React.useState(0);
   const [hover, setHover] = React.useState(0);
   const [reviews, setReviews] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const { id } = useParams();
+
   const handleSubmitReview = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
+    try {
+      if (!rating || !reviews) {
+        setLoading(false);
+        toast.error("Please fill all fields");
+        return;
+      }
 
-    // later we will use our Api to submit the review
+      const response = await customFetch.post(
+        `/api/v1/trainers/${id}/reviews`,
+        {
+          rating,
+          reviews,
+        }
+      );
+      const result = await response.data.data;
+      setLoading(false);
+      toast.success("Review added successfully");
+      setRating(0);
+      setReviews("");
+      console.log(result);
+    } catch (error) {
+      setLoading(false);
+      toast.error("Something went wrong");
+    }
   };
   return (
     <form action="">
@@ -59,7 +89,7 @@ const FeedbackForm = () => {
         ></textarea>
       </div>
       <button type="submit" className="btn" onClick={handleSubmitReview}>
-        Submit Feedback
+        {!loading ? <HashLoader size={25} /> : "Submit Feedback"}
       </button>
     </form>
   );

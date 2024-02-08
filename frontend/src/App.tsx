@@ -12,6 +12,7 @@ import UserAccount from "./pages/dashboard/user-account/UserAccount";
 import Dashboard from "./pages/dashboard/trainer-account/Dashboard";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Profile from "./pages/dashboard/user-account/Profile";
+import TrainerDetails from "./pages/Trainers/TrainerDetail";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,18 @@ const router = createBrowserRouter([
         path: "trainers",
         element: <Trainers />,
       },
+      {
+        path: "trainers/:id",
+        element: <TrainerDetails />,
+      },
+      // {
+      //   path: "test",
+      //   element: <Trainers />,
+      // },
+      // {
+      //   path: "test/:id",
+      //   element: <TrainerDetails />,
+      // },
       {
         path: "program",
         element: <ProgramPage />,
