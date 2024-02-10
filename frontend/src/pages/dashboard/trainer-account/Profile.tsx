@@ -43,9 +43,9 @@ interface Props {
 }
 
 const Profile: React.FC<Props> = ({ trainer }: Props) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [previewURL, setPreviewURL] = useState<string | null>(null);
+  const [previewImage, setPreviewImage] = useState("");
+  const [selectedFile, setSelectedFile] = useState("");
   const navigate = useNavigate();
 
   const {
@@ -60,7 +60,6 @@ const Profile: React.FC<Props> = ({ trainer }: Props) => {
       email: trainer.email,
       phone: trainer.phone,
       bio: trainer.bio,
-      photo: trainer.photo,
       gender: trainer.gender,
       specialization: trainer.specialization,
       ticketPrice: trainer.ticketPrice,
@@ -101,12 +100,14 @@ const Profile: React.FC<Props> = ({ trainer }: Props) => {
     if (file) {
       const data = await uploadImageToCloudinary(file);
       setSelectedFile(data.url);
-      setPreviewURL(data.url);
+      setPreviewImage(data.url);
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
       fileReader.onloadend = () => {
-        setPreviewURL(fileReader.result as string);
+        setPreviewImage(fileReader.result as string);
       };
+    } else {
+      setSelectedFile(trainer.photo);
     }
   };
 
@@ -119,28 +120,28 @@ const Profile: React.FC<Props> = ({ trainer }: Props) => {
 
   const onSubmit = async (data: UpdateProfileSchemaType) => {
     console.log(data);
-    // try {
-    //   setIsLoading(true);
-    //   const response = await customFetch.put(
-    //     `/api/v1/trainers/${trainer._id}`,
-    //     {
-    //       ...data,
-    //       photo: selectedFile || trainer.photo,
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${localStorage.getItem("token")}`,
-    //       },
-    //     }
-    //   );
-    //   setIsLoading(false);
-    //   console.log(response);
-    //   // toast.success("Profile updated successfully");
-    //   // navigate("/");
-    // } catch (error) {
-    //   console.log(error);
-    //   setIsLoading(false);
-    // }
+    try {
+      setIsLoading(true);
+      const response = await customFetch.put(
+        `/api/v1/trainers/${trainer._id}`,
+        {
+          ...data,
+          photo: selectedFile,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      setIsLoading(false);
+      console.log(response);
+      toast.success("Profile updated successfully");
+      navigate("/");
+    } catch (error: any) {
+      console.log(error.response.data.message);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -216,7 +217,7 @@ const Profile: React.FC<Props> = ({ trainer }: Props) => {
                 className="font-semibold text-[15px] leading-7 py-3.5 focus:outline-none"
               >
                 <option value="">Select</option>
-                <option value="bodyWeight">Body Weight</option>
+                <option value="body weight">Body Weight</option>
                 <option value="fitness">Fitness</option>
                 <option value="kardio">Meditasi</option>
                 <option value="rehabilitasi">Rehabilitasi</option>
@@ -394,13 +395,9 @@ const Profile: React.FC<Props> = ({ trainer }: Props) => {
         </div>
 
         <div className="flex items-center gap-3 mb-5">
-          {trainer.photo && (
+          {selectedFile && (
             <figure className="w-[60px] h-[60px] rounded-full border-2 border-solid flex items-center justify-center">
-              <img
-                src={previewURL || trainer.photo}
-                alt=""
-                className="w-full rounded-full"
-              />
+              <img src={previewImage} alt="" className="w-full rounded-full" />
             </figure>
           )}
 
@@ -411,13 +408,13 @@ const Profile: React.FC<Props> = ({ trainer }: Props) => {
               })}
               type="file"
               id="customFile"
+              onChange={handleFileChange}
               accept=".jpg, .png, .jpeg"
               className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-              onChange={handleFileChange}
             />
             <label
               htmlFor="customFile"
-              className="absolute top-0 left-0 flex items-center w-full h-full px-[0.75rem] py-[0.375rem] text-[15px] leading-6 overflow-hidden bg-primary-300  font-semibold rounded-lg truncate cursor-pointer"
+              className="absolute top-0 left-0 flex items-center w-full h-full px-[0.75rem] py-[0.375rem] text-[15px] leading-6 overflow-hidden bg-primary-300 text-headingColor font-semibold rounded-lg truncate cursor-pointer"
             >
               Upload Photo
             </label>

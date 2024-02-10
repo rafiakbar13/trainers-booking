@@ -29,29 +29,29 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const UserSchema_1 = __importDefault(require("../models/UserSchema"));
 const TrainerSchema_1 = __importDefault(require("../models/TrainerSchema"));
 const generateToken = (user) => {
-    return jsonwebtoken_1.default.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, { expiresIn: '15d' });
+    return jsonwebtoken_1.default.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, { expiresIn: "15d" });
 };
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password, name, role, photo, gender } = req.body;
     try {
         let user = null;
-        if (role === 'member') {
+        if (role === "member") {
             user = yield UserSchema_1.default.findOne({ email });
         }
-        else if (role === 'trainer') {
+        else if (role === "trainer") {
             user = yield TrainerSchema_1.default.findOne({ email });
         }
         // check if user already exists
         if (user) {
             return res.status(400).json({
                 success: false,
-                message: 'User already exists',
+                message: "User already exists",
             });
         }
         // hash password
         const salt = yield bcryptjs_1.default.genSalt(10);
         const hashedPassword = yield bcryptjs_1.default.hash(password, salt);
-        if (role === 'member') {
+        if (role === "member") {
             user = new UserSchema_1.default({
                 name,
                 email,
@@ -61,7 +61,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 photo,
             });
         }
-        if (role === 'trainer') {
+        if (role === "trainer") {
             user = new TrainerSchema_1.default({
                 name,
                 email,
@@ -75,14 +75,14 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             yield user.save();
             res.status(201).json({
                 success: true,
-                message: 'User created successfully',
+                message: "User created successfully",
             });
         }
     }
     catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Failed to create user',
+            message: "Failed to create user",
         });
     }
 });
@@ -101,7 +101,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         if (!user) {
             return res.status(400).json({
-                message: 'User does not exist',
+                message: "User does not exist",
             });
         }
         // compare password
@@ -109,15 +109,15 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!isPasswordMatch) {
             return res.status(400).json({
                 success: false,
-                message: 'Invalid credentials',
+                message: "Invalid credentials",
             });
         }
         // generate token
-        const token = generateToken(user);
+        const token = generateToken(user._id);
         const _a = user.toObject(), { password, role, appointments } = _a, rest = __rest(_a, ["password", "role", "appointments"]);
         res.status(201).json({
             status: true,
-            message: 'User logged in successfully',
+            message: "User logged in successfully",
             token,
             data: Object.assign(Object.assign({}, rest), { role: user.role }),
         });
@@ -125,7 +125,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     catch (error) {
         res.status(500).json({
             status: false,
-            message: 'Failed to login',
+            message: "Failed to login",
         });
     }
 });

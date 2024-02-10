@@ -76,7 +76,7 @@ export const getAllTrainers = async (req: Request, res: Response) => {
       }).select("-password");
     } else {
       trainers = await Trainer.find({
-        isApproved: "pending",
+        isApproved: "approved",
       }).select("-password ");
     }
     res.status(200).json({

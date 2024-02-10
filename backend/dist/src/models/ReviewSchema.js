@@ -33,7 +33,7 @@ const reviewSchema = new mongoose_1.default.Schema({
         min: 0,
         max: 5,
         default: 0,
-    }
+    },
 }, { timestamps: true });
 reviewSchema.pre(/^find/, function (next) {
     this.populate({
@@ -54,7 +54,7 @@ reviewSchema.statics.calcAverageRatings = function (trainerId) {
                     numOfRatings: { $sum: 1 },
                     avgRating: { $avg: "$rating" },
                 },
-            }
+            },
         ]);
         yield TrainerSchema_1.default.findByIdAndUpdate(trainerId, {
             totalRating: stats[0].numOfRatings,
@@ -65,25 +65,5 @@ reviewSchema.statics.calcAverageRatings = function (trainerId) {
 reviewSchema.post("save", function () {
     return this.constructor.calcAverageRatings(this.trainer);
 });
-reviewSchema.statics.calcAverageRatings = function (trainerId) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const stats = yield this.aggregate([
-            {
-                $match: { trainer: trainerId },
-            },
-            {
-                $group: {
-                    _id: "$trainer",
-                    numOfRatings: { $sum: 1 },
-                    avgRating: { $avg: "$rating" },
-                },
-            }
-        ]);
-        yield TrainerSchema_1.default.findByIdAndUpdate(trainerId, {
-            totalRating: stats[0].numOfRatings,
-            averageRating: stats[0].avgRating,
-        });
-    });
-};
 const Review = mongoose_1.default.model("Review", reviewSchema);
 exports.default = Review;

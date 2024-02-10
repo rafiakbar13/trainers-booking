@@ -83,7 +83,7 @@ const Navbar = () => {
                 <img
                   src={user?.photo}
                   alt=""
-                  className="w-full rounded-full "
+                  className="w-full h-full rounded-full"
                 />
               </figure>
             </Link>

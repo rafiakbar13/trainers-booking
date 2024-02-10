@@ -3,6 +3,7 @@ import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import starIcon from "../../assets/Star.png";
 import { TrainersProps } from "../../types/Trainers";
+import Badge from "../../components/badge";
 
 const TrainerCard = ({ data }: any) => {
   return (
@@ -13,9 +14,7 @@ const TrainerCard = ({ data }: any) => {
           {data.name}
         </h1>
         <div className="flex items-center justify-between mt-2 lg:mt-4">
-          <span className="bg-[#CCF0F3] text-irisBlueColor py-1 px-2 lg:py-2 lg:px-6 text-[12px] leading-4 lg:text-[16px] lg:leading-7 font-semibold rounded">
-            {data.specialization}
-          </span>
+          <Badge text={data.specialization} />
           <div className="flex items-center gap-[6px]">
             <span className="flex items-center gap-[6px] text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-semibold text-headingColor">
               <img src={starIcon} alt="" />
@@ -24,6 +23,7 @@ const TrainerCard = ({ data }: any) => {
             <span className="text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-textColor">
               {data.totalRating}
             </span>
+            B
           </div>
         </div>
         <div className="mt-[18px] lg:mt-5 flex items-center justify-between">

@@ -29,7 +29,7 @@ export const UpdateProfileSchema = z.object({
   name: z.string().min(3, { message: "Name must be at least 3 characters" }),
   email: z.string().email({ message: "Invalid email address" }),
   password: z.string().min(6).optional(),
-  photo: z.string().optional(),
+  photo: z.instanceof(FileList),
   phone: z.string().min(11).max(13).optional(),
   bio: z.string().optional(),
   gender: z.string(),
@@ -43,3 +43,10 @@ export const UpdateProfileSchema = z.object({
 });
 
 export type UpdateProfileSchemaType = z.infer<typeof UpdateProfileSchema>;
+
+export const ReviewSchema = z.object({
+  rating: z.number().int().min(1).max(5),
+  reviewText: z.string(),
+});
+
+export type ReviewSchemaType = z.infer<typeof ReviewSchema>;

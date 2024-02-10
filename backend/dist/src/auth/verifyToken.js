@@ -39,7 +39,7 @@ const authenticate = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
         if (error.name === "TokenExpiredError") {
             return res.status(401).json({
                 success: false,
-                message: "Token Expired",
+                message: "Token Expired, authorization denied",
             });
         }
         return res.status(401).json({

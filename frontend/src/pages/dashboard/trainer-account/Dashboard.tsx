@@ -8,6 +8,7 @@ import StarIcon from "../../../assets/Star.png";
 import TrainerAbout from "../../Trainers/TrainerAbout";
 import Profile from "./Profile";
 import Appointments from "./Appointments";
+import Badge from "../../../components/badge";
 type Props = {};
 
 const Dashboard = (props: Props) => {
@@ -60,14 +61,16 @@ const Dashboard = (props: Props) => {
             <div className="mt-8">
               {tab === "overview" && (
                 <div className="">
-                  <div className="flex items-center gap-5 mb-10">
+                  <div className="flex items-center gap-5 mb-32 ">
                     <figure className="max-w-[200px] max-h-[200px]">
-                      <img src={user?.photo} alt="avatar" className="w-full" />
+                      <img
+                        src={user?.photo}
+                        alt="avatar"
+                        className="w-full rounded-md"
+                      />
                     </figure>
                     <div className="flex flex-col gap-4">
-                      <div className="bg-primary-100 text-gray-500 py-2 px-4 lg:py-2 lg:px-6 rounded-md text-[18px] leading-4 font-semibold max-w-[160px] text-center whitespace-nowrap">
-                        <span>{user?.specialization}</span>
-                      </div>
+                      <Badge text={user?.specialization} />
                       <h3 className="text-[22px] leading-9 font-bold text-gray-900">
                         {user?.name}
                       </h3>

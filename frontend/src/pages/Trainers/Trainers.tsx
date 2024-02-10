@@ -1,15 +1,17 @@
 import React from "react";
-// import { trainers } from "../../constant/Trainer";
 import TrainerCard from "../../module/Trainer/TrainerCard";
 import Testimonial from "../../module/Testimonial/Testimonial";
 import { customFetch } from "../../utils";
 import Loading from "../../components/Loading";
+
 const Trainers = () => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
   const [trainers, setTrainers] = React.useState([]);
+  const [searchResults, setSearchResults] = React.useState([]);
   const [query, setQuery] = React.useState("");
   const [debounce, setDebounce] = React.useState("");
+
   const getTrainers = async () => {
     setLoading(true);
     try {
@@ -18,6 +20,7 @@ const Trainers = () => {
       );
       const result = await response.data.data;
       setTrainers(result);
+      setSearchResults(result);
       setLoading(false);
       setError(false);
     } catch (error) {
@@ -44,6 +47,18 @@ const Trainers = () => {
     setQuery(query.trim());
   };
 
+  const handleQueryChange = (e: any) => {
+    setQuery(e.target.value);
+  };
+
+  // Update search results when debounce changes
+  React.useEffect(() => {
+    const results = trainers.filter((trainer) =>
+      trainer?.name.toLowerCase().includes(debounce.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [debounce, trainers]);
+
   return (
     <>
       <section className="bg-gray-20">
@@ -56,7 +71,7 @@ const Trainers = () => {
                 className="w-full py-4 pl-4 pr-2 bg-transparent cursor-pointer focus:outline-none placeholder:text-gray-300"
                 placeholder="Search Trainer"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={handleQueryChange}
               />
               <button
                 className="text-white bg-gray-500 py-[15px] px-[35px] rounded-md"
@@ -75,7 +90,7 @@ const Trainers = () => {
           {error && !loading && <h1 className="text-center">Error</h1>}
           {!loading && !error && (
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-              {trainers.map((trainer, i) => (
+              {searchResults.map((trainer, i) => (
                 <TrainerCard key={i} data={trainer} />
               ))}
             </div>
