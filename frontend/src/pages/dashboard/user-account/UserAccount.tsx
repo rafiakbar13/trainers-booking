@@ -43,7 +43,7 @@ const UserAccount = (props: Props) => {
 
   return (
     <section>
-      <div className="w-5/6 max-w-[1170px] px-5 mx-auto">
+      <div className="w-5/6 max-w-[1170px] px-5 mx-auto my-28">
         {loading && <Loading />}
         {!loading && (
           <div className="grid gap-10 md:grid-cols-3 mt-28">

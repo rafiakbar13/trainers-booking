@@ -125,6 +125,7 @@ const TrainerDetails = () => {
 
             <div>
               <SidePanel
+                trainerId={trainer._id}
                 ticketPrice={trainer.ticketPrice}
                 timeslots={trainer.timeSlots}
               />

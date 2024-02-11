@@ -3,13 +3,15 @@ import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import starIcon from "../../assets/Star.png";
 import { TrainersProps } from "../../types/Trainers";
-import Badge from "../../components/badge";
+import Badge from "../../components/Badge";
 
 const TrainerCard = ({ data }: any) => {
+  console.log(data);
+
   return (
-    <Card className="shadow-lg w-80 rounded-xl bg-white-400">
-      <img src={data.photo} alt="" className="w-full rounded-t-lg h-96" />
-      <div className="px-4 py-4">
+    <Card className="bg-white w-72 h-72 rounded-xl">
+      <img src={data.photo} alt="" className="w-full h-full rounded-t-lg " />
+      <div className="px-4 py-4 bg-white shadow-lg">
         <h1 className="text-[18px] leading-[30px] lg:text-[26px] lg:leading-9 font-semibold mt-3 lg:mt-5">
           {data.name}
         </h1>
@@ -23,7 +25,6 @@ const TrainerCard = ({ data }: any) => {
             <span className="text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-textColor">
               {data.totalRating}
             </span>
-            B
           </div>
         </div>
         <div className="mt-[18px] lg:mt-5 flex items-center justify-between">

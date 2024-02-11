@@ -13,6 +13,7 @@ import Dashboard from "./pages/dashboard/trainer-account/Dashboard";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Profile from "./pages/dashboard/user-account/Profile";
 import TrainerDetails from "./pages/Trainers/TrainerDetail";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
 
 const router = createBrowserRouter([
   {
@@ -31,14 +32,10 @@ const router = createBrowserRouter([
         path: "trainers/:id",
         element: <TrainerDetails />,
       },
-      // {
-      //   path: "test",
-      //   element: <Trainers />,
-      // },
-      // {
-      //   path: "test/:id",
-      //   element: <TrainerDetails />,
-      // },
+      {
+        path: "/checkout-success",
+        element: <CheckoutSuccess />,
+      },
       {
         path: "program",
         element: <ProgramPage />,

@@ -1,4 +1,5 @@
 import Booking from "../models/BookingSchema";
+import Trainer from "../models/TrainerSchema";
 import User from "../models/UserSchema";
 import { Request, Response } from "express";
 
@@ -107,9 +108,14 @@ export const getMyAppointment = async (req: AuthRequest, res: Response) => {
     // step 2: extract trainer id from bookings
     const trainerIds = bookings.map((booking) => booking.trainer.id);
     // step 3: retrieve trainers from trainerIds
-    const trainers = await User.find({ _id: { $in: trainerIds } }).select(
+    const trainers = await Trainer.find({ _id: { $in: trainerIds } }).select(
       "-password"
     );
+    return res.status(200).json({
+      success: true,
+      message: "Appointments fetched successfully",
+      data: trainers,
+    });
   } catch (error) {
     res.status(500).json({
       success: false,

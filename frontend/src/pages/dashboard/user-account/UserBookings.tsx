@@ -36,9 +36,9 @@ const UserBookings = (props: Props) => {
     <div>
       {isLoading ? <Loading /> : null}
       {!isLoading && appointments.length > 0 ? (
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-          {appointments.map((trainer: any) => (
-            <TrainerCard key={trainer._id} {...trainer} />
+        <div className="grid grid-cols-1 gap-5 mt-6 lg:grid-cols-2">
+          {appointments.map((appointment: any) => (
+            <TrainerCard key={appointment._id} data={appointment} />
           ))}
         </div>
       ) : (

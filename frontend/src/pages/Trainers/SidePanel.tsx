@@ -1,8 +1,29 @@
 import React from "react";
 import { convertCurrency } from "../../utils/convertCurrency";
 import { convertTime } from "../../utils/convertTime";
+import { customFetch } from "../../utils";
 
-const SidePanel = ({ ticketPrice, timeslots }: any) => {
+const SidePanel = ({ trainerId, ticketPrice, timeslots }: any) => {
+  const bookingHandler = async (e: any) => {
+    e.preventDefault();
+    try {
+      const response = await customFetch.post(
+        `/api/v1/bookings/checkout-session/${trainerId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      console.log(response);
+      if (response.data.session.url) {
+        window.location.href = response.data.session.url;
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
   return (
     <div className="p-3 rounded-md shadow-2xl lg:p-8">
       <div className="flex items-center justify-between">
@@ -30,7 +51,10 @@ const SidePanel = ({ ticketPrice, timeslots }: any) => {
         </ul>
       </div>
 
-      <button className="w-full px-4 py-2 mt-4 text-gray-500 transition duration-300 rounded-md bg-primary-300 hover:bg-primary-500">
+      <button
+        className="w-full px-4 py-2 mt-4 text-gray-500 transition duration-300 rounded-md bg-primary-300 hover:bg-primary-500"
+        onClick={bookingHandler}
+      >
         Book Appointment
       </button>
     </div>

@@ -38,11 +38,13 @@ const Appointments = ({ appointments }: any) => {
                 alt=""
                 className="w-10 h-10 rounded-full"
               />
-              <div className="pl-3">
+              <div className="flex flex-col pl-3">
                 <span className="text-base font-semibold">
                   {appointment.user.name}
                 </span>
-                <span className="text-gray-600">{appointment.user.email}</span>
+                <span className="text-sm text-gray-600">
+                  {appointment.user.email}
+                </span>
               </div>
             </th>
             <td className="px-6 py-4">{appointment.user.gender}</td>
