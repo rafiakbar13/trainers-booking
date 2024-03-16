@@ -31,9 +31,14 @@ const TrainerList = () => {
       {loading && !error && <Loading />}
       {error && !loading && <h1 className="text-center">Error</h1>}
       {!loading && !error && (
-        <section className="lg:mt-[180px] w-5/6 mx-auto">
-          <h1 className="text-5xl font-bold text-center">Our Trainer</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 lg:gap-[30px] mt-20 mb-24 ">
+        <section className="w-5/6 py-24 mx-auto ">
+          <div className="relative">
+            <h2 className="absolute text-gray-600 text-8xl text-opacity-10 -top-9 -left-16 md:-left-40">
+              Trainer
+            </h2>
+            <h1 className="text-5xl font-bold">Our Trainer</h1>
+          </div>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 ">
             {trainers.map((trainer, i) => (
               <TrainerCard key={i} data={trainer} />
             ))}

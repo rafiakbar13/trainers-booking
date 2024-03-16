@@ -8,7 +8,7 @@ import StarIcon from "../../../assets/Star.png";
 import TrainerAbout from "../../Trainers/TrainerAbout";
 import Profile from "./Profile";
 import Appointments from "./Appointments";
-import Badge from "../../../components/badge";
+import Badge from "../../../components/Badge";
 type Props = {};
 
 const Dashboard = (props: Props) => {

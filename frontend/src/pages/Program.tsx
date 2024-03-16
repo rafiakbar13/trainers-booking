@@ -1,16 +1,15 @@
-import React from 'react'
-import Program from '../module/program/Program'
-type Props = {}
+import React from "react";
+import Program from "../module/program/Program";
+type Props = {};
 
 const ProgramPage = (props: Props) => {
-    return (
-        <section>
-            <div className=''>
-                <Program />
-            </div>
+  return (
+    <section>
+      <div className="py-10 bg-gray-20">
+        <Program />
+      </div>
+    </section>
+  );
+};
 
-        </section>
-    )
-}
-
-export default ProgramPage
+export default ProgramPage;
