@@ -1,6 +1,6 @@
 import Review from "../models/ReviewSchema";
 import Trainer from "../models/TrainerSchema";
-import { Request, Response } from "express";
+import {Request, Response} from "express";
 
 interface UserId extends Request {
   userId?: string;
