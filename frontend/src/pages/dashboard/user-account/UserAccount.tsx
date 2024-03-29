@@ -5,9 +5,7 @@ import Profile from "./Profile";
 import Loading from "../../../components/Loading";
 import { customFetch } from "../../../utils";
 
-type Props = {};
-
-const UserAccount = (props: Props) => {
+const UserAccount = () => {
   const { dispatch } = useContext(authContext);
   const [tab, setTab] = useState("bookings");
   const [user, setUser] = useState<any>([]);

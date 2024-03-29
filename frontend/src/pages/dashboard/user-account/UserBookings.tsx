@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { customFetch } from "../../../utils";
 import TrainerCard from "../../../module/Trainer/TrainerCard";
 import Loading from "../../../components/Loading";
-type Props = {};
 
-const UserBookings = (props: Props) => {
+const UserBookings = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [appointments, setAppointments] = useState([]);
 

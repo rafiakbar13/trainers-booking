@@ -1,8 +1,7 @@
 import React from "react";
 import Program from "../module/program/Program";
-type Props = {};
 
-const ProgramPage = (props: Props) => {
+const ProgramPage = () => {
   return (
     <section>
       <div className="py-10 bg-gray-20">
