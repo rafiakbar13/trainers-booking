@@ -40,7 +40,7 @@ const Profile = ({ user }: any) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
       fileReader.onloadend = () => {
-        setPreviewURL(fileReader.result as string);
+        setPreviewURL(fileReader.result as null);
       };
     }
   };

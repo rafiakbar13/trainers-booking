@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const Signup = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewURL, setPreviewURL] = useState<string | null>(null);
+  const [previewURL, setPreviewURL] = useState(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
@@ -31,7 +31,7 @@ const Signup = () => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
       fileReader.onloadend = () => {
-        setPreviewURL(fileReader.result as string);
+        setPreviewURL(fileReader.result as null);
       };
     }
   };
