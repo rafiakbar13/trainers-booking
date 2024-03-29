@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const Signup = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewURL, setPreviewURL] = useState(null);
+  const [previewURL, setPreviewURL] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,

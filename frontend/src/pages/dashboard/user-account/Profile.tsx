@@ -15,7 +15,7 @@ type Props = {};
 
 const Profile = ({ user }: any) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewURL, setPreviewURL] = useState<string | null>(null);
+  const [previewURL, setPreviewURL] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
