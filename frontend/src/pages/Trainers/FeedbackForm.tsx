@@ -1,5 +1,5 @@
 import React from "react";
-import { set } from "react-hook-form";
+
 import { AiFillStar } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -36,7 +36,6 @@ const FeedbackForm = () => {
           },
         }
       );
-      console.log(response);
       setLoading(false);
       toast.success("Review added successfully");
       setRating(0);

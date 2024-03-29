@@ -1,11 +1,9 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import { Outlet } from 'react-router-dom'
-import Container from '../components/Container'
-type Props = {}
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { Outlet } from "react-router-dom";
+import Container from "../components/Container";
 
-const HomeLayout = (props: Props) => {
+const HomeLayout = () => {
   return (
     <Container>
       <Navbar />
@@ -14,7 +12,7 @@ const HomeLayout = (props: Props) => {
       </main>
       <Footer />
     </Container>
-  )
-}
+  );
+};
 
-export default HomeLayout
+export default HomeLayout;

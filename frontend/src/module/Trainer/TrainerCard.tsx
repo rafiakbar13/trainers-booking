@@ -2,9 +2,9 @@
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import starIcon from "../../assets/Star.png";
-import { TrainersProps } from "../../types/Trainers";
+// import { TrainersProps } from "../../types/Trainers";
 import Badge from "../../components/Badge";
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
+import { Card, CardBody, CardFooter } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
 
 const TrainerCard = ({ data }: any) => {

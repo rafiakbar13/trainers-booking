@@ -9,9 +9,8 @@ import TrainerAbout from "../../Trainers/TrainerAbout";
 import Profile from "./Profile";
 import Appointments from "./Appointments";
 import Badge from "../../../components/Badge";
-type Props = {};
 
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   const [user, setUser] = React.useState<any>([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);

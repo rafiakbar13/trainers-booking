@@ -4,11 +4,18 @@ import Testimonial from "../../module/Testimonial/Testimonial";
 import { customFetch } from "../../utils";
 import Loading from "../../components/Loading";
 
+interface Trainer {
+  id: number;
+  name: string;
+  email: string;
+  phoneNumber: number;
+}
+
 const Trainers = () => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
-  const [trainers, setTrainers] = React.useState([]);
-  const [searchResults, setSearchResults] = React.useState([]);
+  const [trainers, setTrainers] = React.useState<Trainer[]>([]);
+  const [searchResults, setSearchResults] = React.useState<Trainer[]>([]);
   const [query, setQuery] = React.useState("");
   const [debounce, setDebounce] = React.useState("");
 
@@ -53,8 +60,8 @@ const Trainers = () => {
 
   // Update search results when debounce changes
   React.useEffect(() => {
-    const results = trainers.filter((trainer) =>
-      trainer?.name.toLowerCase().includes(debounce.toLowerCase())
+    const results: Trainer[] = trainers.filter((trainer) =>
+      trainer?.name?.toLowerCase().includes(debounce.toLowerCase())
     );
     setSearchResults(results);
   }, [debounce, trainers]);

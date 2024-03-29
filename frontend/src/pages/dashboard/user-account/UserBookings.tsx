@@ -23,7 +23,6 @@ const UserBookings = (props: Props) => {
       const data = response.data.data;
       setAppointments(data);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   };

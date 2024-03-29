@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import starIcon from "../../assets/Star.png";
 import TrainerAbout from "./TrainerAbout";
 import FeedBack from "./Feedback";
@@ -6,7 +6,7 @@ import SidePanel from "./SidePanel";
 import { customFetch } from "../../utils";
 import Loading from "../../components/Loading";
 import { useParams } from "react-router-dom";
-import Badge from "../../components/badge";
+import Badge from "../../components/Badge";
 
 const TrainerDetails = () => {
   const [activeTab, setActiveTab] = useState("about");

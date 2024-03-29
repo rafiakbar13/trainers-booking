@@ -119,7 +119,6 @@ const Profile: React.FC<Props> = ({ trainer }: Props) => {
   };
 
   const onSubmit = async (data: UpdateProfileSchemaType) => {
-    console.log(data);
     try {
       setIsLoading(true);
       const response = await customFetch.put(
@@ -135,7 +134,6 @@ const Profile: React.FC<Props> = ({ trainer }: Props) => {
         }
       );
       setIsLoading(false);
-      console.log(response);
       toast.success("Profile updated successfully");
       navigate("/");
     } catch (error: any) {

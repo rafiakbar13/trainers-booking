@@ -6,12 +6,10 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Trainers from "./pages/Trainers/Trainers";
-import ErrorPage from "./pages/ErrorPage";
 import ProgramPage from "./pages/Program";
 import UserAccount from "./pages/dashboard/user-account/UserAccount";
 import Dashboard from "./pages/dashboard/trainer-account/Dashboard";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
-import Profile from "./pages/dashboard/user-account/Profile";
 import TrainerDetails from "./pages/Trainers/TrainerDetail";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 

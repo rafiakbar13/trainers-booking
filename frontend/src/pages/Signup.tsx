@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { customFetch } from "../utils";
 import { toast } from "react-toastify";
@@ -37,8 +37,6 @@ const Signup = () => {
   };
 
   const onSubmit = async (data: SignupSchemaType) => {
-    console.log(data);
-
     setIsLoading(true);
     try {
       if (!selectedFile) {

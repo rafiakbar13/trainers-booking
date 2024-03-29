@@ -1,4 +1,3 @@
-import React from "react";
 import { Avatar, AvatarGroup } from "@nextui-org/react";
 import { testimonial } from "../../constant/Testimonial";
 import TestiCard from "./TestiCard";

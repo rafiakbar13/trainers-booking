@@ -46,8 +46,6 @@ const Profile = ({ user }: any) => {
   };
 
   const onSubmit = async (data: UpdateProfileSchemaType) => {
-    console.log(data);
-
     try {
       if (!selectedFile) {
         return toast.error("Please select an image");
@@ -70,7 +68,6 @@ const Profile = ({ user }: any) => {
       return response;
     } catch (error: any) {
       setIsLoading(false);
-      console.log(error);
     }
   };
   return (

@@ -2,8 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@nextui-org/button";
 import Logo from "../assets/Logo.png";
-import { HiMiniBars3BottomRight } from "react-icons/hi2";
-import { AiOutlineClose } from "react-icons/ai";
 import { MENU } from "../constant/Menu";
 import { motion } from "framer-motion";
 import { authContext } from "../context/AuthContext";

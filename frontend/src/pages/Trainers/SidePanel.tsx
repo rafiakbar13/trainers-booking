@@ -1,7 +1,7 @@
-import React from "react";
 import { convertCurrency } from "../../utils/convertCurrency";
 import { convertTime } from "../../utils/convertTime";
 import { customFetch } from "../../utils";
+import { toast } from "react-toastify";
 
 const SidePanel = ({ trainerId, ticketPrice, timeslots }: any) => {
   const bookingHandler = async (e: any) => {
@@ -16,12 +16,11 @@ const SidePanel = ({ trainerId, ticketPrice, timeslots }: any) => {
           },
         }
       );
-      console.log(response);
       if (response.data.session.url) {
         window.location.href = response.data.session.url;
       }
     } catch (error: any) {
-      console.log(error);
+      toast.error(error.response.data.message);
     }
   };
   return (

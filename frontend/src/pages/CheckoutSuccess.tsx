@@ -1,9 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
-type Props = {};
-
-const CheckoutSuccess = (props: Props) => {
+const CheckoutSuccess = () => {
   return (
     <div className="h-screen bg-gray-100">
       <div className="p-6 bg-white md:mx-auto">

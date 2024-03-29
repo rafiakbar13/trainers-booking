@@ -1,8 +1,4 @@
-import React from "react";
 import { formatDate } from "../../../utils/formatDate";
-
-type Props = {};
-
 const Appointments = ({ appointments }: any) => {
   return (
     <table className="w-full text-sm text-left text-gray-400">

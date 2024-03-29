@@ -1,4 +1,3 @@
-import React from "react";
 import { formatDate } from "../../utils/formatDate";
 const TrainerAbout = ({ name, experiences, about }: any) => {
   return (

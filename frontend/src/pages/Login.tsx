@@ -33,7 +33,6 @@ const Login = () => {
           role: response.data.data.role,
         },
       });
-      console.log(response);
       navigate("/");
       setLoading(false);
     } catch (error: any) {

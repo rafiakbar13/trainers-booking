@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FAQ } from "../../constant/Faq";
 import FaqsItem from "./FaqsItem";
 import FaqImg from "../../assets/FaqsImg.png";
